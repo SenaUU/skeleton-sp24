@@ -55,6 +55,7 @@ public class JavaExercises {
     }
 
     private static List<Integer> hailstoneHelper(int x, List<Integer> list) {
+        list.add(x);
         if(x==1){
             return list;
         } else if(x%2 == 0){
@@ -62,7 +63,6 @@ public class JavaExercises {
         } else{
             x = 3*x+1;
         }
-        list.add(x);
         return hailstoneHelper(x, list);
     }
 
