@@ -76,6 +76,42 @@ public class LinkedListDeque61BTest {
              // Optionally, print the execution time for each size
              System.out.println("Size: " + i + ", Time for isEmpty: " + duration + " ns");
          }
+    }
 
+    @Test
+    public void removeFirstAndAddLastTest() {
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        lld1.addFirst(0);
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        lld1.addFirst(3);
+        lld1.addFirst(4);
+        lld1.addFirst(5);
+
+        lld1.removeLast();
+        lld1.removeLast();
+        lld1.removeFirst();
+
+        assertThat(lld1.toList()).containsExactly(4,3,2).inOrder();
+    }
+
+    @Test
+    public void getAndGetRecursiveTest() {
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+        lld1.addLast(10);
+        lld1.addLast(11);
+        lld1.addLast(12);
+        lld1.addLast(13);
+
+        int getIndex0 = lld1.get(0);
+        Object getIndex5 = lld1.get(5);
+        int getRecursiveIndex2 = lld1.getRecursive(2);
+        Object getRecursiveIndexBelow0 = lld1.getRecursive(-2);
+
+        assertThat(getIndex0).isEqualTo(10);
+        assertThat(getIndex5).isNull();
+        assertThat(getRecursiveIndex2).isEqualTo(12);
+        assertThat(getRecursiveIndexBelow0).isNull();
     }
 }
